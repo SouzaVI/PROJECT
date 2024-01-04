@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
     <link href="/static/css/output.css" rel="stylesheet">
 </head>
-    <body>
+    <body class="flex">
         <aside class="sm:h-screen bg-base-200 shadow-xl z-50 w-[260px] pt-8">
                 <h2 class="text-center mb-5 text-2xl">Bem vindo!</h2>
                 <ul id="sidebar" class="menu w-64 rounded-box">
@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/talhiao">
+                        <a href="/sobre">
                             <div style="width: 24px; height: 24px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 21.4V2.6a.6.6 0 0 1 .6-.6h11.652a.6.6 0 0 1 .424.176l3.148 3.148A.6.6 0 0 1 20 5.75V21.4a.6.6 0 0 1-.6.6H4.6a.6.6 0 0 1-.6-.6M8 10h8m-8 8h8m-8-4h4"/><path d="M16 2v3.4a.6.6 0 0 0 .6.6H20"/></g></svg>
                             </div>
@@ -53,7 +53,206 @@
                 </ul>
         </aside>
 
-        <main>
+        <main class="p-10">
+            <div class="flex items-center gap-3 mb-8">
+                <h2 class="text-2xl">Clientes</h2>
+                <button onclick="modal_create.showModal()" class="btn btn-success btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"/></svg>
+                    Criar Cliente
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <input type="text" required placeholder="pesquisar por..." class="w-60 input input-bordered" />
+                    <button class="btn btn-primary">Pesquisar</button>
+                </div>
+                <table class="table">
+                    <!-- head -->
+                    <thead class="bg-gray-300">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>CPF/CNPJ</th>
+                            <th>RG</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                            <th> 1234 </th>
+                            <td> Igor </td>
+                            <td> Fisica </td>
+                            <td> 123.123.123-30 </td>
+                            <td> RG - 21212 </td>
+                            <td> +55 11 1111-2222 </td>
+                            <td> foo@foo.com </td>
+                            <th class="flex gap-2">
+                                <button onclick="modal_edit.showModal()" class="btn btn-warning btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"/></svg>
+                                    Editar
+                                </button>
+                                <button onclick="modal_delete.showModal()" class="btn btn-error btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>
+                                    Remover
+                                </button>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th> 1234 </th>
+                            <td> Igor </td>
+                            <td> Fisica </td>
+                            <td> 123.123.123-30 </td>
+                            <td> RG - 21212 </td>
+                            <td> +55 11 1111-2222 </td>
+                            <td> foo@foo.com </td>
+                            <th class="flex gap-2">
+                                <button onclick="modal_edit.showModal()" class="btn btn-warning btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"/></svg>
+                                    Editar
+                                </button>
+                                <button onclick="modal_delete.showModal()" class="btn btn-error btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/></svg>
+                                    Remover
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Delete -->
+                <dialog id="modal_delete" class="modal">
+                  <div class="modal-box">
+                    <h3 class="font-bold text-lg">Deletar!</h3>
+                    <p class="py-4">Tem certeza que dejesa deletar este cliente?</p>
+                    <div class="modal-action">
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn btn-ghost">Cancelar</button>
+                        <button class="btn btn-error">Deletar</button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+
+                <!-- Create -->
+                <dialog id="modal_create" class="modal">
+                  <div class="modal-box">
+                      <h3 class="font-bold text-lg">Criar!</h3>
+                      <form class="space-y-4">
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Nome</span>
+                              </label>
+                              <input type="text" required placeholder="Nome do cliente" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">E-mail</span>
+                              </label>
+                              <input type="email" placeholder="Endereço de e-mail" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Tipo</span>
+                              </label>
+                              <select class="select select-bordered w-full">
+                                  <option disabled selected>Tipo do cliente?</option>
+                                  <option>Pessoa Física</option>
+                                  <option>Pessoa Jurídica</option>
+                              </select>
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">CPF/CNPJ</span>
+                              </label>
+                              <input type="text" required placeholder="CPF ou CNPJ" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">RG</span>
+                              </label>
+                              <input type="text" required placeholder="RG" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Telefone</span>
+                              </label>
+                              <input type="text" required placeholder="Telefone" class="w-full input input-bordered" />
+                          </div>
+                      </form>
+                      <div class="modal-action">
+                          <form method="dialog">
+                              <!-- if there is a button in form, it will close the modal -->
+                              <button class="btn btn-ghost">Cancelar</button>
+                              <button class="btn btn-primary">Criar</button>
+                          </form>
+                      </div>
+                  </div>
+                </dialog>
+
+                <!-- Edit -->
+                <dialog id="modal_edit" class="modal">
+                  <div class="modal-box">
+                      <h3 class="font-bold text-lg">Editar!</h3>
+                      <form class="space-y-4">
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Nome</span>
+                              </label>
+                              <input type="text" required placeholder="Nome do cliente" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">E-mail</span>
+                              </label>
+                              <input type="email" placeholder="Endereço de e-mail" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Tipo</span>
+                              </label>
+                              <select class="select select-bordered w-full">
+                                  <option disabled selected>Tipo do cliente?</option>
+                                  <option>Pessoa Física</option>
+                                  <option>Pessoa Jurídica</option>
+                              </select>
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">CPF/CNPJ</span>
+                              </label>
+                              <input type="text" required placeholder="CPF ou CNPJ" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">RG</span>
+                              </label>
+                              <input type="text" required placeholder="RG" class="w-full input input-bordered" />
+                          </div>
+                          <div>
+                              <label class="label">
+                                  <span class="text-base label-text">Telefone</span>
+                              </label>
+                              <input type="text" required placeholder="Telefone" class="w-full input input-bordered" />
+                          </div>
+                      </form>
+                      <div class="modal-action">
+                          <form method="dialog">
+                              <!-- if there is a button in form, it will close the modal -->
+                              <button class="btn btn-ghost">Cancelar</button>
+                              <button class="btn btn-primary">Salvar</button>
+                          </form>
+                      </div>
+                  </div>
+                </dialog>
+
+            </div>
         </main>
     </body>
 </html>

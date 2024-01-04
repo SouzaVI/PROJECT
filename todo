@@ -1,0 +1,15 @@
+- clientes
+- fazendas
+    id
+    cliente
+    nome da fazenda
+    (mapa)
+        latitude
+        longitude
+    cidade
+    estado
+
+- talhiao
+    fazenda
+    nome
+    ha

@@ -2,6 +2,7 @@
 module.exports = {
     content: [ "./templates/**" ],
     plugins: [
+        require("@tailwindcss/typography"),
         require('daisyui')
     ],
     daisyui: {

@@ -1,0 +1,14 @@
+# Projeto
+
+### Desenvolvimento
+
+- instalar dependências
+`npm install`
+
+- executar tailwindcss em dev
+ `npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch`
+
+### Build (Produção)
+
+- executar tailwindcss em prod
+ `npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify`
